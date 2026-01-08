@@ -453,3 +453,28 @@
         $('#ship-box-info').slideToggle(1000);
     });
 })(jQuery);
+
+// main.js
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal_box');
+
+    modal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget; // кнопка, которая открыла модал
+
+        // данные из data-атрибутов
+        const name = button.getAttribute('data-name');
+        const price = button.getAttribute('data-price');
+        const image = button.getAttribute('data-image');
+        const description = button.getAttribute('data-description');
+        const productId = button.getAttribute('data-id');
+
+        // вставляем данные в модальное окно
+        modal.querySelector('#modal_product_name').textContent = name;
+        modal.querySelector('#modal_product_price').textContent = '$' + price;
+        modal.querySelector('#modal_product_image').src = image;
+        modal.querySelector('#modal_product_description').textContent = description;
+
+        // action формы корзины (если нужно)
+        modal.querySelector('#modal_add_to_cart_form').action = '/cart/add/' + productId + '/';
+    });
+});

@@ -1,0 +1,73 @@
+{% extends "template/base.html" %}
+{% block title %}Bucker - Желаемое{% endblock %}
+{% block content %}
+{% include 'template/header.html' %}
+
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="assets/img/others/breadcrumbs-bg.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumbs_text"><h1>Желаемое</h1></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wishlist-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Remove</th>
+                                <th>Images</th>
+                                <th>Product</th>
+                                <th>Unit Price</th>
+                                <th>Stock Status</th>
+                                <th>Add to Cart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in wishlist_items %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'wishlist_remove' item.product.id %}">
+                                        <i class="pe-7s-close"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    </a>
+                                </td>
+                                <td>{{ item.product.name }}</td>
+                                <td>${{ item.product.price }}</td>
+                                <td>
+                                    {% if item.product.in_stock %}
+                                        <span class="in-stock">In Stock</span>
+                                    {% else %}
+                                        <span class="text-danger">Out of Stock</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <!--  url 'cart_add' item.product.id -->
+                                    <a href="">Add to Cart</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center">Wishlist is empty</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'template/footer.html' %}
+{% endblock %}

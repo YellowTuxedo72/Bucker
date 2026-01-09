@@ -9,7 +9,7 @@
                                 <img src="{% static 'img/others/shipping1.png' %}" alt="">
                             </div>
                             <div class="shipping_text">
-                                <h3>Free Shipping</h3>
+                                <h3>Бесплатная доставка</h3>
                                 <p>Capped at $39 per order</p>
                             </div>
                         </div>
@@ -20,8 +20,8 @@
                                 <img src="{% static 'img/others/shipping2.png' %}" alt="">
                             </div>
                             <div class="shipping_text">
-                                <h3>Card Payments</h3>
-                                <p>12 Months Installments</p>
+                                <h3>Карточные платежи</h3>
+                                <p>Рассрочка на 12 месяцев</p>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
                                 <img src="{% static 'img/others/shipping3.png' %}" alt="">
                             </div>
                             <div class="shipping_text">
-                                <h3>Easy Returns</h3>
-                                <p>Shop Wwith Confidence</p>
+                                <h3>Легкий возврат</h3>
+                                <p>Покупайте с уверенностью</p>
                             </div>
                         </div>
                     </div>
@@ -43,10 +43,9 @@
                     <div class="col-12">
                         <div class="main_footer_inner d-flex">
                             <div class="footer_widget_list contact footer_list_width">
-                                <h3>Contact Us</h3>
+                                <h3>Связаться с нами</h3>
                                 <div class="footer_contact_desc">
-                                    <p>If you have any question.please
-                                        contact us at <a href="#">demo@example.com</a></p>
+                                    <p>Если у вас возникнут какие-либо вопросы, пожалуйста, свяжитесь с нами по адресу: <a href="#">demo@example.com</a></p>
                                 </div>
                                 <div class="footer_contact_info">
                                     <div class="footer_contact_info_list d-flex align-items-center">
@@ -54,8 +53,7 @@
                                             <span class="pe-7s-map-marker"></span>
                                         </div>
                                         <div class="footer_contact_info_text">
-                                            <p>Your address goes here.
-                                                123, Address.</p>
+                                            <p>Здесь указывается ваш адрес. 123, Адрес.</p>
                                         </div>
                                     </div>
                                     <div class="footer_contact_info_list d-flex align-items-center">
@@ -74,40 +72,39 @@
                             </div>
                             <div class="footer_menu_widget footer_list_width middle d-flex">
                                 <div class="footer_widget_list">
-                                    <h3>Information</h3>
+                                    <h3>Информация</h3>
                                     <div class="footer_menu">
                                         <ul>
-                                            <li><a href="about.html">О нас</a></li>
-                                            <li><a href="contact.html">Delivery information</a></li>
+                                            <li><a href="{% url 'about' %}">О нас</a></li>
+                                            <!-- <li><a href="contact.html">Delivery information</a></li>
                                             <li><a href="contact.html">Privacy Policy</a></li>
                                             <li><a href="contact.html">Sales</a></li>
                                             <li><a href="contact.html">Terms & Conditions</a></li>
                                             <li><a href="contact.html">Shipping Policy</a></li>
-                                            <li><a href="contact.html">EMI Payment</a></li>
+                                            <li><a href="contact.html">EMI Payment</a></li> -->
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="footer_widget_list">
-                                    <h3>Account</h3>
+                                    <h3>Аккаунт</h3>
                                     <div class="footer_menu">
                                         <ul>
-                                            <li><a href="my-account.html">Мой аккаунт</a></li>
-                                            <li><a href="contact.html">My orders</a></li>
-                                            <li><a href="contact.html">Returns</a></li>
+                                            <li><a href="{% url 'my_account' %}">Мой аккаунт</a></li>
+                                            <li><a href="{% url 'my_account' %}">Мои заказы</a></li>
+                                            <!-- <li><a href="contact.html">Returns</a></li>
                                             <li><a href="contact.html">Shipping</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="about.html">How Does It Work</a></li>
-                                            <li><a href="login-register.html">Merchant Sign Up</a></li>
+                                            <li><a href="login-register.html">Merchant Sign Up</a></li> -->
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="footer_widget_list footer_list_width">
-                                <h3>newsletter</h3>
+                                <h3>Информационный бюллетень</h3>
                                 <div class="footer_newsletter">
                                     <div class="newsletter_desc">
-                                        <p>If you have any question.please
-                                            contact us at <a href="contact.html">Send Us a Email</a></p>
+                                        <p>Если у вас возникнут вопросы, пожалуйста, свяжитесь с нами, отправив электронное письмо.</p>
                                     </div>
 
                                     <div class="newsletter_subscribe">
@@ -137,7 +134,7 @@
             </div>
             <div class="footer_bottom">
                 <div class="copyright_right text-center">
-                    <p> © 2021 <a href="index.html"> Bucker.</a> Made with <i class="ion-heart"></i> by <a
+                    <p> © 2021 <a href="index.html"> Bucker.</a> Сделано с <i class="ion-heart"></i> <a
                             href="https://themeforest.net/user/codecarnival/portfolio">CodeCarnival</a></p>
                 </div>
             </div>

@@ -1,0 +1,104 @@
+{% extends "template/base.html" %}
+{% block title %}Bucker - Корзина{% endblock %}
+{% load static %}
+{% block content %}
+
+    <!--header area start-->
+ {% include 'template/header.html' %}
+
+    <!-- breadcrumbs area start -->
+    <div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="{% static 'img/others/breadcrumbs-bg.png'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs_text">
+                        <h1>Корзина</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumbs area end -->
+    <div class="cart-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="{% url 'cart' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">Убрать</th>
+                                        <th class="product-thumbnail">Изображение</th>
+                                        <th class="cart-product-name">Продукт</th>
+                                        <th class="product-price">Цена за единицу товара</th>
+                                        <th class="product-quantity">Количество</th>
+                                        <th class="product-subtotal">Стоимость</th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                    {% for item in items %}
+                                    <tr>
+                                        <td class="product_remove">
+                                            <a href="{% url 'cart_remove' item.id %}">
+                                                <i class="pe-7s-close" title="Remove"></i>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{% url 'product' item.product.id %}">
+                                                <img src="{{ item.product.image.url }}" width="100px" height="100px" alt="{{ item.product.name }}">
+                                            </a>
+                                        </td>
+
+                                        <td class="product-name">
+                                            <a href="{% url 'product' item.product.id %}">{{ item.product.name }}</a>
+                                        </td>
+
+                                        <td class="product-price">
+                                            <span class="amount">{{ item.product.price }} руб.</span>
+                                        </td>
+
+                                        <td class="product_pro_button quantity">
+                                            <div class="pro-qty border">
+                                                <input type="text" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1" readonly>
+                                            </div>
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="amount">{{ item.total_price }} руб.</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="coupon-all">
+                                    <div class="coupon2">
+                                            <input class="button" name="update_cart" value="Обновить" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total">
+                                    <!-- <h2>Cart totals</h2> -->
+                                    <ul>
+                                        <li>Итоговая стоимость <span>{{ total }}</span></li>
+                                    </ul>
+                                    <a href="{% url 'checkout' %}">Оформить заказ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% include 'template/footer.html' %}
+{% endblock %}

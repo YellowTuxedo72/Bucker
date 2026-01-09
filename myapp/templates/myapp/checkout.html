@@ -1,0 +1,183 @@
+{% extends "template/base.html" %}
+{% block title %}Bucker - Оформление заказа{% endblock %}
+{% load static %}
+{% block content %}
+
+    <!--header area start-->
+ {% include 'template/header.html' %}
+    <!-- breadcrumbs area start -->
+    <div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="{% static 'img/others/breadcrumbs-bg.png'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs_text">
+                        <h1>Оформление заказа</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumbs area end -->
+    <div class="checkout-area">
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                            <div class="checkbox-form">
+                                <h3>Платежные данные</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Имя <span class="required">*</span></label>
+                                            <input name="first_name" type="text" value="{{ data.first_name }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Фамилия <span class="required">*</span></label>
+                                            <input name="last_name" type="text" value="{{ data.last_name }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Адрес <span class="required">*</span></label>
+                                            <input name="address" placeholder="Адрес улицы," type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Город <span class="required">*</span></label>
+                                            <input name="city" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Страна <span class="required">*</span></label>
+                                            <input name="country" placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Почтовый индекс <span class="required">*</span></label>
+                                            <input name="postcode" placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Адрес электронной почты <span class="required">*</span></label>
+                                            <input name="email" type="email" value="{{ data.email }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Телефон <span class="required">*</span></label>
+                                            <input name="phone" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="your-order">
+                            <h3>Ваш заказ</h3>
+                            <div class="your-order-table table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="cart-product-name">Продукт</th>
+                                            <th class="cart-product-total">Стоимость</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in products %}
+                                        <tr class="cart-item">
+                                            <td class="cart-product-name">
+                                                {{ product.product.name }}
+                                                <strong class="product-quantity">× {{ product.quantity }}</strong>
+                                            </td>
+                                            <td class="cart-product-total">
+                                                <span class="amount">{{ product.total_price }} руб.</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr class="order-total">
+                                            <th>Итоговая стоимость</th>
+                                            <td><strong><span class="amount">{{ total }} руб.</span></strong></td>
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
+                            </div>
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-1">
+                                                <h5 class="panel-title">
+                                                    <a href="#" class="" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne" aria-expanded="true">
+                                                        Прямой банковский перевод
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="mb-3">Оплатите заказ напрямую на наш банковский счет. 
+                                                        В качестве ссылки на платеж укажите номер вашего заказа. 
+                                                        Ваш заказ будет отправлен только после поступления средств на наш счет.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-2">
+                                                <h5 class="panel-title">
+                                                    <a href="#" class="collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseTwo" aria-expanded="false">
+                                                        Проверить оплату
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p class="mb-3">Оплатите заказ напрямую на наш банковский счет. 
+                                                        В качестве ссылки на платеж укажите номер вашего заказа. 
+                                                        Ваш заказ будет отправлен только после поступления средств на наш счет.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="#payment-3">
+                                                <h5 class="panel-title">
+                                                    <a href="#" class="collapsed" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseThree" aria-expanded="false">
+                                                        PayPal
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Оплатите заказ напрямую на наш банковский счет. 
+                                                        В качестве ссылки на платеж укажите номер вашего заказа. 
+                                                        Ваш заказ будет отправлен только после поступления средств на наш счет.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-button-payment">
+                                        <input value="Оформить заказ" type="submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% include 'template/footer.html' %}
+{% endblock %}

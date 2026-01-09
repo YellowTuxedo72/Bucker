@@ -57,14 +57,14 @@
                                                 <figure>
                                                     <div class="product_thumb">
                                                         <!-- % url 'product_detail' product.id % -->
-                                                        <a href="">
+                                                        <a href="{% url 'product' product.id %}">
                                                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
                                                         </a>
                                                         <div class="action_links">
                                                             <ul class="d-flex justify-content-center">
                                                                 <li class="add_to_cart">
                                                                      <!-- % url 'cart_add' product.id % -->
-                                                                    <a href="" title="Add to cart">
+                                                                    <a href="{% url 'cart_add' product.id %}" title="Add to cart">
                                                                         <span class="pe-7s-shopbag"></span>
                                                                     </a>
                                                                 </li>
@@ -90,7 +90,7 @@
                                                     <figcaption class="product_content text-center">
                                                         <h4>
                                                             <!-- % url 'product_detail' product.id % -->
-                                                            <a href="">{{ product.name }}</a>
+                                                            <a href="{% url 'product' product.id %}">{{ product.name }}</a>
                                                         </h4>
                                                         <div class="price_box">
                                                             <span class="current_price">${{ product.price }}</span>

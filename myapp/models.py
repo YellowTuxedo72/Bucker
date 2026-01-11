@@ -45,14 +45,13 @@ class CartDetails(models.Model):
     @property
     def total_price(self):
         return self.product.price * self.quantity
+        
+class OrderStatus(models.TextChoices):
+    PROCESSING = 'processing', 'В обработке'
+    SHIPPED = 'shipped', 'Отправлен'
+    CANCELED = 'canceled', 'Отменён'
     
 class Order(models.Model):
-
-    class Status(models.TextChoices):
-        PROCESSING = 'processing', 'В обработке'
-        SHIPPED = 'shipped', 'Отправлен'
-        CANCELED = 'canceled', 'Отменён'
-
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -61,8 +60,7 @@ class Order(models.Model):
 
     status = models.CharField(
         max_length=20,
-        choices=Status.choices,
-        default=Status.PROCESSING
+        choices=OrderStatus.choices
     )
 
     first_name = models.CharField(max_length=100)
